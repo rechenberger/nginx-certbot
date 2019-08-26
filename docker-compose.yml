@@ -11,6 +11,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "4200:4200"
+      - "8080:8080"
     extra_hosts:
       - "actualhost:172.17.0.1"
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
