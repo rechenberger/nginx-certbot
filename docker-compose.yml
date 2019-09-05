@@ -8,13 +8,7 @@ services:
       - ./data/nginx:/etc/nginx/conf.d
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
-    ports:
-      - "80:80"
-      - "443:443"
-      - "4200:4200"
-      - "8080:8080"
-    extra_hosts:
-      - "actualhost:172.17.0.1"
+    network_mode: host
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     image: certbot/certbot
